@@ -9,6 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       entries: [
+        { id: 0, name: "Monthly", desc: "Small income", price: 3500 },
         { id: 1, name: "Loto ticket", desc: "", price: 20 },
         { id: 2, name: "Beers", desc: "Party night \\o/", price: -15 },
         { id: 3, name: "Phone Bill", desc: "January", price: -29.99 },
@@ -19,7 +20,10 @@ class App extends React.Component {
 
   componentDidMount() {
     const needUpD = [...this.state.entries];
-    needUpD.map((chaqObj) => (chaqObj[" "] = <button>X</button>));
+    needUpD.map((chaqObj, index) => {
+      if (index === 0) return (chaqObj[" "] = <div className="green"></div>);
+      else return (chaqObj[" "] = <button>X</button>);
+    });
     //console.log(needUpD);
     this.setState({ entries: needUpD });
     this.updateTotal();
@@ -28,8 +32,10 @@ class App extends React.Component {
     this.updateTotal();
     const needUpD = [...this.state.entries];
     const index = needUpD.indexOf(chaqueObjet);
-    needUpD.splice(index, 1);
-    this.setState({ entries: needUpD });
+    if (index !== 0) {
+      needUpD.splice(index, 1);
+      this.setState({ entries: needUpD });
+    }
     //console.log(needUpD);
   };
   handleSubmit = (event, nouvOp) => {
