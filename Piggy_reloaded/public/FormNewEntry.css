@@ -1,0 +1,12 @@
+form {
+  margin-top: 5vh;
+  width: 100%;
+}
+form input {
+  display: block;
+  margin: auto;
+  width: 80%;
+}
+.submit {
+  margin-top: 2vh;
+}
